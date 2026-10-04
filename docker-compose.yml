@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nexlink
+      POSTGRES_USER: nexlink
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nexlink-local-password}
+    volumes:
+      - nexlink-postgres:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexlink -d nexlink"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgres://nexlink:${POSTGRES_PASSWORD:-nexlink-local-password}@db:5432/nexlink
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+      DATABASE_SSL: ${DATABASE_SSL:-false}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "${APP_BIND_ADDRESS:-127.0.0.1}:3000:3000"
+
+volumes:
+  nexlink-postgres:
