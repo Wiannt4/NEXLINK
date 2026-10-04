@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a10">
+  <title>Dashboard — NEXLINK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <header class="app-header">
+    <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXLINK</span></a>
+    <div class="app-header-actions"><button class="public-link preview-mode-button" id="preview-mode-toggle" type="button">Preview <span>↗</span></button><button class="button button-quiet share-profile-button" type="button" data-share-profile>Share profile</button><button class="button button-quiet" id="logout-button" type="button">Keluar</button></div>
+  </header>
+  <main class="dashboard-shell">
+    <section class="editor-column">
+      <div class="dashboard-heading"><div><div class="eyebrow"><span class="status-dot"></span> YOUR SPACE</div><h1>Dashboard</h1><p>Atur halamanmu. Perubahan tersimpan otomatis.</p></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Ganti tema">◐ <span>Tema</span></button></div>
+      <section class="editor-panel">
+        <div class="section-heading"><div><span class="section-index">01</span><h2>Profil</h2></div><span class="saved-indicator"><i></i> Tersimpan otomatis</span></div>
+        <div class="avatar-editor">
+          <div class="avatar-preview" id="editor-avatar">N</div>
+          <div><label class="button button-outline upload-button" for="avatar-upload">↑ Unggah foto</label><input class="visually-hidden" id="avatar-upload" type="file" accept="image/*"><p class="field-hint">JPG, PNG atau WebP. Maks. 2 MB.</p></div>
+        </div>
+        <div class="form-grid">
+          <div class="form-field"><label class="field-label" for="profile-name">Nama</label><input class="text-input" id="profile-name" type="text" maxlength="40" placeholder="Nama kamu"></div>
+          <div class="form-field"><label class="field-label" for="profile-username">Username</label><div class="username-input"><span>@</span><input class="text-input" id="profile-username" type="text" maxlength="24" pattern="[-A-Za-z0-9._]+" placeholder="username"></div></div>
+          <div class="form-field full-field"><label class="field-label" for="profile-bio">Bio</label><textarea class="text-input text-area" id="profile-bio" maxlength="160" placeholder="Ceritakan sedikit tentang dirimu..."></textarea><span class="field-hint char-count" id="bio-count">0 / 160</span></div>
+        </div>
+      </section>
+      <section class="editor-panel links-panel">
+        <div class="section-heading"><div><span class="section-index">02</span><h2>Link kamu</h2></div><span class="link-count" id="link-count">0 link</span></div>
+        <div id="links-list" class="links-list"></div>
+        <form id="link-form" class="link-form">
+          <div class="link-form-title"><span class="add-icon">+</span><div><strong>Tambah link baru</strong><small>Bagikan sesuatu yang kamu suka.</small></div></div>
+          <div class="form-grid">
+            <div class="form-field"><label class="field-label" for="link-title">Judul link</label><input class="text-input" id="link-title" type="text" maxlength="50" placeholder="Contoh: Portfolio saya" required></div>
+            <div class="form-field"><label class="field-label" for="link-url">URL</label><input class="text-input" id="link-url" type="url" placeholder="https://contoh.com" required></div>
+          </div>
+          <button class="button button-primary" type="submit">Tambah link <span>＋</span></button>
+        </form>
+        <p class="field-hint drag-hint">↕ Seret link untuk mengatur urutan.</p>
+      </section>
+      <section class="editor-panel appearance-panel">
+        <div class="section-heading"><div><span class="section-index">03</span><h2>Tampilan</h2></div></div>
+        <p class="field-label">Pilih tema profil</p>
+        <div class="theme-options">
+          <button class="theme-swatch theme-orchid" type="button" data-profile-theme="orchid" aria-label="Tema orchid"><span>Orchid</span></button>
+          <button class="theme-swatch theme-ocean" type="button" data-profile-theme="ocean" aria-label="Tema ocean"><span>Ocean</span></button>
+          <button class="theme-swatch theme-rose" type="button" data-profile-theme="rose" aria-label="Tema rose"><span>Rose</span></button>
+          <button class="theme-swatch theme-mint" type="button" data-profile-theme="mint" aria-label="Tema mint"><span>Mint</span></button>
+        </div>
+        <p class="field-label">Pilih latar halaman</p>
+        <div class="background-options">
+          <button class="background-swatch swatch-dark" type="button" data-background="dark" aria-label="Latar gelap"><span>Gelap</span></button>
+          <button class="background-swatch swatch-violet" type="button" data-background="violet" aria-label="Latar violet"><span>Violet</span></button>
+          <button class="background-swatch swatch-sunset" type="button" data-background="sunset" aria-label="Latar sunset"><span>Sunset</span></button>
+          <button class="background-swatch swatch-light" type="button" data-background="light" aria-label="Latar terang"><span>Terang</span></button>
+        </div>
+        <label class="custom-background" for="custom-background-color"><span>Pilih warna latar</span><input id="custom-background-color" type="color" value="#7044c7" aria-label="Pilih warna background"></label>
+      </section>
+      <section class="editor-panel analytics-panel">
+        <div class="section-heading"><div><span class="section-index">04</span><h2>Analytics</h2></div><span class="saved-indicator"><i></i> Lokal</span></div>
+        <div class="analytics-summary">
+          <div class="analytics-stat"><strong id="profile-views-count">0</strong><span>Profile views</span></div>
+          <div class="analytics-stat"><strong id="profile-clicks-count">0</strong><span>Total link clicks</span></div>
+        </div>
+        <div class="analytics-links" id="analytics-links"></div>
+      </section>
+      <section class="editor-panel qr-panel">
+        <div class="section-heading"><div><span class="section-index">05</span><h2>QR Code Profile</h2></div></div>
+        <div class="qr-content"><div class="qr-code" id="profile-qr" aria-label="QR Code URL profil"></div><div class="qr-copy"><p>Scan untuk membuka profile NEXLINK kamu.</p><button class="button button-outline" id="download-qr-button" type="button">↓ Download QR</button></div></div>
+      </section>
+    </section>
+    <aside class="preview-column" id="preview-column">
+      <div class="preview-heading"><div><span class="preview-label">LIVE PREVIEW</span><span class="preview-status"><i></i> Live</span></div><div class="preview-actions"><button id="copy-profile-button" class="copy-button" type="button">⧉ Salin link</button></div></div>
+      <div class="preview-frame" id="preview-frame">
+        <div id="preview-profile" class="public-card preview-card"></div>
+      </div>
+      <p class="preview-caption">Inilah tampilan halamanmu untuk pengunjung.</p>
+    </aside>
+  </main>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a10">
+  <title>Buat akun — NEXLINK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="register">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXLINK</span></a>
+    <nav class="header-nav"><a class="nav-login" href="login.html">Sudah punya akun? Login</a></nav>
+  </header>
+  <main class="auth-layout register-layout">
+    <section class="auth-aside">
+      <div class="eyebrow"><span class="status-dot"></span> START SOMETHING YOURS</div>
+      <h1>Internet-mu,<br><span>aturanmu.</span></h1>
+      <p>Buat halaman personal yang menyatukan semua yang kamu lakukan.</p>
+      <div class="auth-decoration"><span>n.</span><i></i><i></i><i></i></div>
+    </section>
+    <section class="auth-card">
+      <div class="auth-card-heading"><span class="auth-kicker">MULAI GRATIS</span><h2>Buat akun</h2><p>Isi detail di bawah untuk memulai.</p></div>
+      <form id="register-form" class="form-stack">
+        <label class="field-label" for="register-username">Username</label>
+        <div class="username-input"><span>@</span><input class="text-input" id="register-username" name="username" type="text" placeholder="namakamu" autocomplete="username" minlength="3" maxlength="24" pattern="[-A-Za-z0-9._]+" required></div>
+        <label class="field-label" for="register-email">Email</label>
+        <input class="text-input" id="register-email" name="email" type="email" placeholder="nama@email.com" autocomplete="email" required>
+        <label class="field-label" for="register-password">Password</label>
+        <div class="password-wrap"><input class="text-input" id="register-password" name="password" type="password" placeholder="Minimal 6 karakter" autocomplete="new-password" minlength="6" required><button class="password-toggle" type="button" data-password-toggle="register-password" aria-label="Tampilkan password">Lihat</button></div>
+        <label class="field-label" for="register-confirm">Konfirmasi password</label>
+        <input class="text-input" id="register-confirm" name="confirm" type="password" placeholder="Ulangi password" autocomplete="new-password" required>
+        <button class="button button-primary button-full" type="submit">Buat akun <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="auth-switch">Dengan membuat akun, data tersimpan di browser ini.</p>
+    </section>
+  </main>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>
